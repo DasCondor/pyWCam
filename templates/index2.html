@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Video Stream</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<style>
+		body {padding: 20px 20px auto 20px;}
+		.col {width:800px; margin: 0 auto; text-align: center;}
+		.row {width:98%; margin: 20px auto;}
+		#resizable {margin: 5px; padding:5px;}
+		canvas, img {padding: 5px;}
+	</style>
+  </head>
+	<body>
+		<div class="row">
+			<div class="col">
+				<button class="btn btn-primary" onclick="snap()" style="font-size: 14pt;">Capture Image</button>
+				<button class="btn btn-success" onclick="saveImage()" style="font-size: 14pt;">Save Image</button>
+				<button class="btn btn-danger" onclick="clearImage()" style="font-size: 14pt;">Clear Image</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col w-75">
+				<div class="ui-widget-content resizable1 mx-auto text-right" style="width:800px; height:600px;">
+					<img src="{{url_for('video_feed')}}" id="video" class="float-right" width="99%" height="99%"/>
+				</div>
+			</div>
+			<div class="col w-75 text-left">
+				<canvas id="canvas" class="ui-widget-content resizable2 float-left" width="805px" height="605px"></canvas>
+			</div>
+		</div>
+	</body>
+<script>
+	$(document).ready(function(){
+		$( ".resizable1" ).resizable()
+		$( ".resizable2" ).resizable()
+	});
+	// Trigger snapshot
+	function snap(){
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var video = document.getElementById('video');
+		context.drawImage(video, 0, 0, 800, 600);
+		var request = new XMLHttpRequest();
+		request.open('POST', '/submit?image=' + video.toString('base64'), true);
+		request.send();
+	}
+	function saveImage(){
+		var link = document.createElement('a');
+		link.download = 'Camera_Capture_'+new Date()+'.png';
+		link.href = document.getElementById('canvas').toDataURL()
+		link.click();
+		timeout(function(){
+			link.parentNode.removeChild(a);
+		},500);
+	}
+	function clearImage(){
+		canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+	}
+</script>
+</html>
