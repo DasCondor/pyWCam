@@ -12,7 +12,7 @@ my_parser = argparse.ArgumentParser(
     prog='pyWCam',
     formatter_class=argparse.RawDescriptionHelpFormatter,
     description=textwrap.dedent('''\
-            ________________________        pyWCam 1.01       ________________________
+            ________________________        pyWCam 0.1.1       ________________________
             
             Use:
             --------------------------------

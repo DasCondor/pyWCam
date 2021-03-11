@@ -1,0 +1,4 @@
+Flask
+argparse
+textwrap
+opencv-python
