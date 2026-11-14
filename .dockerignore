@@ -1,0 +1,17 @@
+.venv
+.git
+.github
+__pycache__
+**/__pycache__
+*.pyc
+.env
+.env.*
+media
+tests
+*.zip
+
+.pywcam
+cameras.json
+
+/tls/
+*.pem

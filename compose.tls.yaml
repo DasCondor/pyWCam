@@ -1,0 +1,7 @@
+services:
+  pywcam:
+    environment:
+      PYWCAM_TLS_CERT: /tls/cert.pem
+      PYWCAM_TLS_KEY: /tls/key.pem
+    volumes:
+      - ${PYWCAM_TLS_DIR:-./tls}:/tls:ro

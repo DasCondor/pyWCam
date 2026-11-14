@@ -1,0 +1,7 @@
+services:
+  pywcam:
+    command: ["--source", "0", "--backend", "v4l2", "--width", "${PYWCAM_WIDTH:-1280}", "--height", "${PYWCAM_HEIGHT:-720}", "--fps", "${PYWCAM_FPS:-15}"]
+    devices:
+      - "${PYWCAM_VIDEO_DEVICE:-/dev/video0}:/dev/video0"
+    group_add:
+      - "${PYWCAM_VIDEO_GID:?Set PYWCAM_VIDEO_GID to the host camera device group ID}"

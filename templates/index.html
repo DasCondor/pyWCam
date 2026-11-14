@@ -1,9 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <title>Video Stream</title>
-  </head>
-  <body>
-  <image src="{{ url_for('video_feed') }}" width="1280" height="720"/>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>pyWCam 2.0</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/theme.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="identity"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="13" rx="3"/><circle cx="12" cy="9.5" r="3.4"/><path d="M12 16v4m-5 0h10"/></svg><h1>pyWCam <small>2.0</small></h1></div>
+    <div class="header-controls"><label>Theme <select id="theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><button id="logout" hidden>Sign out</button><div id="status" class="status" role="status"><i></i><span id="state">Connecting</span></div></div>
+  </header>
+  <div class="camera-bar" aria-label="Camera selection">
+    <label for="cameraSelect">Camera</label>
+    <select id="cameraSelect"><option value="default">Default camera</option></select>
+    <button id="addCamera" type="button">Add IP camera</button>
+    <button id="editCamera" type="button" disabled>Edit</button>
+    <button id="deleteCamera" type="button" disabled>Remove</button>
+  </div>
+  <dialog id="cameraDialog" aria-labelledby="cameraDialogTitle">
+    <h2 id="cameraDialogTitle">Add IP camera</h2>
+    <label for="cameraName">Camera name</label>
+    <input id="cameraName" maxlength="80" placeholder="Garage" autocomplete="off">
+    <label for="cameraSource">Stream URL</label>
+    <input id="cameraSource" type="password" maxlength="2048" placeholder="rtsp://192.168.1.10:554/stream" autocomplete="new-password" spellcheck="false" autocapitalize="none">
+    <label class="show-source"><input type="checkbox" id="showSource"> Show URL</label>
+    <label for="cameraUser">Camera username (optional)</label>
+    <input id="cameraUser" maxlength="128" autocomplete="off">
+    <label for="cameraPassword">Camera password (optional)</label>
+    <input id="cameraPassword" type="password" maxlength="512" autocomplete="new-password">
+    <label class="show-source"><input type="checkbox" id="secureTransport"> Require HTTPS or RTSPS URL</label>
+    <p class="caption">Camera credentials are separate from the server login. Camera TLS verification depends on the camera/backend.</p>
+    <p id="sourceHint" class="caption">RTSP, RTSPS or HTTP(S) video stream. Use the camera's actual stream URL.</p>
+    <p id="cameraError" role="alert"></p>
+    <div class="dialog-buttons"><button id="cancelCamera" type="button">Cancel</button><button id="saveCamera" type="button">Save camera</button></div>
+  </dialog>
+  <main class="workspace">
+    <section class="viewer" aria-label="Camera preview">
+      <div class="panelbar"><h2>Camera</h2><span id="mode">Connecting</span></div>
+      <div class="screen" id="screen">
+        <img id="feed" alt="Live camera stream" hidden>
+        <div id="empty" class="empty"><strong id="message">Connecting to camera…</strong></div>
+        <span id="screenlabel" class="screenlabel" hidden>LIVE</span>
+      </div>
+      <div class="controls" aria-label="Camera controls">
+        <button id="pause" type="button">Pause</button>
+        <button id="snapshot" type="button" disabled>Capture photo</button>
+        <div class="control-spacer"></div>
+        <button id="mirror" type="button" aria-pressed="false">Mirror</button>
+        <button id="full" type="button">Expand</button>
+      </div>
+      <dl class="metrics" aria-label="Camera statistics">
+        <div><dt>Size</dt><dd id="resolution">—</dd></div>
+        <div><dt>FPS</dt><dd id="fps">—</dd></div>
+        <div><dt>Viewers</dt><dd id="viewers">—</dd></div>
+        <div><dt>Retries</dt><dd id="reconnects">—</dd></div>
+      </dl>
+    </section>
+    <section class="capture" id="capture" aria-label="Photo preview">
+      <div class="panelbar"><h2>Snapshot</h2><a id="download" hidden download="pywcam.jpg">Save JPG</a></div>
+      <div class="capture-screen">
+        <div id="captureEmpty" class="captureEmpty">No photo captured.</div>
+        <img id="photo" alt="Latest captured photo" hidden>
+      </div>
+      <p class="caption">Photos are saved to your device, not the server.</p>
+    </section>
+  </main>
+  <footer><span id="notice" role="status">Waiting for camera</span><span>Local webcam server</span></footer>
+</body>
 </html>

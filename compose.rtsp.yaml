@@ -1,0 +1,5 @@
+services:
+  pywcam:
+    command: ["--backend", "ffmpeg", "--fps", "${PYWCAM_FPS:-15}"]
+    environment:
+      PYWCAM_SOURCE: "${PYWCAM_SOURCE:?Set PYWCAM_SOURCE to an authorized network camera URL}"
