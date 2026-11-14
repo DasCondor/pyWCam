@@ -296,3 +296,9 @@ For a physical camera or RTSP source, include the applicable `compose.usb.yaml` 
 ### Sandbox security and theme
 
 The public demo includes an Add IP Camera dialog with locked sample URLs, simulated camera credentials, protocol choices and a Security dialog that simulates turning MFA on and signing in. No real credentials, URL connections, camera permissions or API calls are used. System, Light and Dark theme options are saved locally in the browser when browser storage is available. The garage and front-door scenes use generated still images; the parking lot currently uses a drawn illustrative scene with a simulated timestamp.
+
+## Support development
+
+<img src=".github/dascondor-logo.png" alt="DasCondor logo" width="64" height="64">
+
+If this project was useful to you, you can [buy me a coffee](https://buymeacoffee.com/dascondor) to support future work. Contributions are voluntary.
