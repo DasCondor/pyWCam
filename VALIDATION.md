@@ -11,4 +11,3 @@
 - Docker build, Compose validation, live container operation and the Chromium sandbox test were not run locally; they run in GitHub Actions (see the Tests workflow for current results). YAML parsing is not Compose schema validation.
 - No physical USB/RTSP cameras, third-party authenticator apps or camera TLS certificate validation were tested. This is not a penetration test or security audit.
 - Garage and front-door feeds are generated stills; the parking-lot scene is drawn, not photorealistic.
-- The original license has not been confirmed; this update does not add or change a license.
