@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 196" role="img" aria-labelledby="t d">
+<title id="t">pyWCam 2.0</title><desc id="d">Self-hosted camera viewer for USB and IP cameras.</desc>
+<rect width="960" height="196" rx="10" fill="#20262d"/>
+<rect x="30" y="29" width="138" height="138" rx="7" fill="#171b20" stroke="#626b75" stroke-width="2"/>
+<rect x="51" y="53" width="96" height="68" rx="9" fill="none" stroke="#dce2e8" stroke-width="5"/><circle cx="99" cy="87" r="20" fill="none" stroke="#8cb5d9" stroke-width="5"/><path d="M99 122v17m-24 0h48" stroke="#dce2e8" stroke-linecap="round" stroke-width="5"/><circle cx="135" cy="64" r="4" fill="#6ebf87"/>
+<g font-family="Segoe UI,Arial,sans-serif"><text x="198" y="85" fill="#f4f6f8" font-size="53" font-weight="600">pyWCam <tspan font-size="26" fill="#a5c6e5">2.0</tspan></text><text x="201" y="120" fill="#c7ced5" font-size="22">USB &amp; IP camera viewer</text><text x="201" y="155" fill="#9aa5af" font-size="16" letter-spacing="1">SELF-HOSTED  /  PYTHON  /  DOCKER</text></g>
+</svg>

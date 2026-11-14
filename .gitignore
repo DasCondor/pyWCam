@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+*.log
+.env.*
+!.env.example
+
+# Runtime camera settings (may contain credentials)
+.pywcam/
+cameras.json
+
+/tls/
+*.pem

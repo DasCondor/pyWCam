@@ -1,0 +1,26 @@
+services:
+  pywcam:
+    build: .
+    image: pywcam:2.0.0
+    init: true
+    restart: unless-stopped
+    ports:
+      - "${PYWCAM_BIND:-127.0.0.1}:${PYWCAM_PORT:-8080}:8080"
+    environment:
+      PYWCAM_USERNAME: "${PYWCAM_USERNAME:-viewer}"
+      PYWCAM_MFA_SECRET: "${PYWCAM_MFA_SECRET:-}"
+      PYWCAM_PASSWORD: "${PYWCAM_PASSWORD:-}"
+    command: ["--demo"]
+    read_only: true
+    volumes:
+      - camera-config:/data
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 15s
+
+volumes:
+  camera-config:
