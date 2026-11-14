@@ -246,7 +246,7 @@ The backend tests use synthetic frames and fake hardware. The optional browser s
 
 The original `-host`, `-po`, `-iid` and `/video_feed` remain available. The two-pane layout is now the default. Flask and its separate templates were replaced by a standard-library HTTP server and a single responsive interface. The old `setup.py` is obsolete. LAN access now requires a password.
 
-The original project is [DasCondor/pyWCam](https://github.com/DasCondor/pyWCam). Thanks to Alfren for the original HTML templates. The old setup declared AGPL; the exact license version and full license text should be confirmed by the repository owner before release. This update does not relicense the project.
+The original project is [DasCondor/pyWCam](https://github.com/DasCondor/pyWCam). Thanks to Alfren for the original HTML templates. pyWCam is released under the [MIT License](LICENSE).
 
 ## Optional security and MFA
 
